@@ -1,0 +1,26 @@
+plugins {
+    id 'java-library'
+}
+group = 'com.sarhatabaot'
+version  = '1.0.0'
+
+sourceCompatibility = targetCompatibility = 16
+
+repositories{
+    mavenCentral()
+    maven {
+        name = 'spigot-api'
+        url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
+    }
+}
+
+dependencies {
+    compileOnly 'org.spigotmc:spigot-api:1.17-R0.1-SNAPSHOT'
+    api 'org.spongepowered:configurate-yaml:4.1.2'
+    api 'org.slf4j:slf4j-api:2.0.0-alpha7'
+    api group: 'org.jetbrains', name: 'annotations', version: '23.0.0'
+}
+
+wrapper {
+    gradleVersion = "7.4.2"
+}
