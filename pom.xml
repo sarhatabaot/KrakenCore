@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.github.sarhatabaot</groupId>
-    <artifactId>krakencore</artifactId>
+    <artifactId>kraken-core</artifactId>
     <version>1.1.2</version>
 
     <packaging>jar</packaging>
