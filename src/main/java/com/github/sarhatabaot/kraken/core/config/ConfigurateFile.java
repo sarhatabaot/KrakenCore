@@ -16,6 +16,7 @@ public abstract class ConfigurateFile<T extends JavaPlugin> extends ConfigFile<T
             path(Paths.get(folder+"/"+fileName));
     protected final YamlConfigurationLoader loader;
     protected CommentedConfigurationNode rootNode;
+    protected Transformation transformation;
 
     protected ConfigurateFile(@NotNull final T plugin, final String resourcePath, final String fileName, final String folder)  throws ConfigurateException {
         super(plugin, resourcePath, fileName, folder);
@@ -26,11 +27,18 @@ public abstract class ConfigurateFile<T extends JavaPlugin> extends ConfigFile<T
         this.saveDefaultConfig();
         initValues();
         plugin.getLogger().info(() -> "Loading "+fileName);
+
+        this.transformation = getTransformation();
+        if(this.transformation != null) {
+            this.transformation.updateNode(loader.load());
+        }
     }
 
     protected abstract void initValues() throws ConfigurateException;
 
     protected abstract void preLoaderBuild();
+
+    protected abstract Transformation getTransformation();
 
     @Override
     public void reloadConfig()  {
