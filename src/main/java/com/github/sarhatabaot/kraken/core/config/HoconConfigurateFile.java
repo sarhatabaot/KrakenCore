@@ -23,7 +23,7 @@ public abstract class HoconConfigurateFile <T extends JavaPlugin> extends YamlCo
 
     protected HoconConfigurateFile(@NotNull final T plugin, final String resourcePath, final String fileName, final String folder)  throws ConfigurateException {
         super(plugin, resourcePath, fileName, folder);
-        preLoaderBuild();
+        builderOptions();
         this.loader = loaderBuilder.build();
         this.rootNode = loader.load();
 
@@ -40,7 +40,7 @@ public abstract class HoconConfigurateFile <T extends JavaPlugin> extends YamlCo
 
     protected abstract void initValues() throws ConfigurateException;
 
-    protected abstract void preLoaderBuild();
+    protected abstract void builderOptions();
 
     protected abstract Transformation getTransformation();
 
