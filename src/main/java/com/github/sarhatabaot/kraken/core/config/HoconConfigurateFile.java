@@ -5,16 +5,13 @@ import org.jetbrains.annotations.NotNull;
 import org.spongepowered.configurate.CommentedConfigurationNode;
 import org.spongepowered.configurate.ConfigurateException;
 import org.spongepowered.configurate.hocon.HoconConfigurationLoader;
-import org.spongepowered.configurate.yaml.NodeStyle;
-import org.spongepowered.configurate.yaml.YamlConfigurationLoader;
 
-import java.io.File;
 import java.nio.file.Paths;
 
 /**
  * @author sarhatabaot
  */
-public abstract class HoconConfigurateFile <T extends JavaPlugin> extends YamlConfigurateFile<T> {
+public abstract class HoconConfigurateFile <T extends JavaPlugin> extends ConfigFile<T> {
     protected final HoconConfigurationLoader.Builder loaderBuilder = HoconConfigurationLoader.builder().
             path(Paths.get(folder+"/"+fileName));
     protected final HoconConfigurationLoader loader;
