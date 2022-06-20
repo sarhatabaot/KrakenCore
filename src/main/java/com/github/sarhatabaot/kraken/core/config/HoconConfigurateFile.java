@@ -4,21 +4,24 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.configurate.CommentedConfigurationNode;
 import org.spongepowered.configurate.ConfigurateException;
+import org.spongepowered.configurate.hocon.HoconConfigurationLoader;
+import org.spongepowered.configurate.yaml.NodeStyle;
 import org.spongepowered.configurate.yaml.YamlConfigurationLoader;
 
+import java.io.File;
 import java.nio.file.Paths;
 
 /**
  * @author sarhatabaot
  */
-public abstract class ConfigurateFile<T extends JavaPlugin> extends ConfigFile<T>{
-    protected final YamlConfigurationLoader.Builder loaderBuilder = YamlConfigurationLoader.builder().
+public abstract class HoconConfigurateFile <T extends JavaPlugin> extends YamlConfigurateFile<T> {
+    protected final HoconConfigurationLoader.Builder loaderBuilder = HoconConfigurationLoader.builder().
             path(Paths.get(folder+"/"+fileName));
-    protected final YamlConfigurationLoader loader;
+    protected final HoconConfigurationLoader loader;
     protected CommentedConfigurationNode rootNode;
     protected Transformation transformation;
 
-    protected ConfigurateFile(@NotNull final T plugin, final String resourcePath, final String fileName, final String folder)  throws ConfigurateException {
+    protected HoconConfigurateFile(@NotNull final T plugin, final String resourcePath, final String fileName, final String folder)  throws ConfigurateException {
         super(plugin, resourcePath, fileName, folder);
         preLoaderBuild();
         this.loader = loaderBuilder.build();
@@ -30,7 +33,8 @@ public abstract class ConfigurateFile<T extends JavaPlugin> extends ConfigFile<T
 
         this.transformation = getTransformation();
         if(this.transformation != null) {
-            this.transformation.updateNode(loader.load());
+            this.loader.save(this.transformation.updateNode(rootNode));
+            this.rootNode = loader.load();
         }
     }
 
@@ -49,5 +53,4 @@ public abstract class ConfigurateFile<T extends JavaPlugin> extends ConfigFile<T
             plugin.getLogger().severe(e.getMessage());
         }
     }
-
 }
