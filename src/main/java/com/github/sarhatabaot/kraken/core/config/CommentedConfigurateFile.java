@@ -12,14 +12,14 @@ import org.spongepowered.configurate.loader.AbstractConfigurationLoader;
  * @param <U> Loader Type
  * @param <R> Builder Type
  */
-public abstract class ConfigurateFile<T extends JavaPlugin, U extends AbstractConfigurationLoader<CommentedConfigurationNode>,R extends AbstractConfigurationLoader.Builder<R, U>> extends ConfigFile<T> {
+public abstract class CommentedConfigurateFile<T extends JavaPlugin, U extends AbstractConfigurationLoader<CommentedConfigurationNode>,R extends AbstractConfigurationLoader.Builder<R, U>> extends ConfigFile<T> {
     protected final U loader;
     protected final R loaderBuilder;
 
     protected CommentedConfigurationNode rootNode;
     protected Transformation transformation;
 
-    protected ConfigurateFile(@NotNull final T plugin, final String resourcePath, final String fileName, final String folder) throws ConfigurateException {
+    protected CommentedConfigurateFile(@NotNull final T plugin, final String resourcePath, final String fileName, final String folder) throws ConfigurateException {
         super(plugin, resourcePath, fileName, folder);
         this.loaderBuilder = loadBuilder();
 

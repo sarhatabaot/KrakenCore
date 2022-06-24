@@ -86,6 +86,12 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
+            <groupId>org.spongepowered</groupId>
+            <artifactId>configurate-gson</artifactId>
+            <version>${configurate.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
             <groupId>org.jetbrains</groupId>
             <artifactId>annotations</artifactId>
             <version>${jetbrains.annotations.version}</version>

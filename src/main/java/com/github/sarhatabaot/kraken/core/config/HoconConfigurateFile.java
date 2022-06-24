@@ -11,7 +11,7 @@ import java.nio.file.Paths;
 /**
  * @author sarhatabaot
  */
-public abstract class HoconConfigurateFile <T extends JavaPlugin> extends ConfigurateFile<T, HoconConfigurationLoader, HoconConfigurationLoader.Builder> {
+public abstract class HoconConfigurateFile <T extends JavaPlugin> extends CommentedConfigurateFile<T, HoconConfigurationLoader, HoconConfigurationLoader.Builder> {
     protected HoconConfigurateFile(@NotNull final T plugin, final String resourcePath, final String fileName, final String folder)  throws ConfigurateException {
         super(plugin, resourcePath, fileName, folder);
     }

@@ -12,7 +12,7 @@ import java.nio.file.Paths;
 /**
  * @author sarhatabaot
  */
-public abstract class YamlConfigurateFile<T extends JavaPlugin> extends ConfigurateFile<T, YamlConfigurationLoader, YamlConfigurationLoader.Builder>{
+public abstract class YamlConfigurateFile<T extends JavaPlugin> extends CommentedConfigurateFile<T, YamlConfigurationLoader, YamlConfigurationLoader.Builder> {
     public YamlConfigurateFile(@NotNull final T plugin, final String resourcePath, final String fileName, final String folder) throws ConfigurateException {
         super(plugin, resourcePath, fileName, folder);
     }
