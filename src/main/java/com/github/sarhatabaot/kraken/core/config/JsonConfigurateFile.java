@@ -8,6 +8,9 @@ import org.spongepowered.configurate.ConfigurateException;
 import org.spongepowered.configurate.gson.GsonConfigurationLoader;
 import org.spongepowered.configurate.loader.AbstractConfigurationLoader;
 
+import java.io.File;
+import java.nio.file.Paths;
+
 /**
  * @author sarhatabaot
  */
@@ -24,7 +27,7 @@ public abstract class JsonConfigurateFile<T extends JavaPlugin> extends ConfigFi
         this.loaderBuilder = GsonConfigurationLoader.builder();
 
         builderOptions();
-        this.loader = loaderBuilder.build();
+        this.loader = loaderBuilder.path(Paths.get(folder + File.separator + file)).build();
         this.rootNode = loader.load();
 
         this.saveDefaultConfig();
