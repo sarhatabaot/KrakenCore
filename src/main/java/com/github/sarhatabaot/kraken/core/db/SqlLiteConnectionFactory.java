@@ -20,10 +20,6 @@ public class SqlLiteConnectionFactory<T extends JavaPlugin> extends HikariConnec
     @Override
     protected void configureDatabase(final @NotNull HikariConfig config, final String address, final int port, final String databaseName, final String username, final String password) {
         config.setDataSourceClassName("org.sqlite.SQLiteDataSource");
-        config.addDataSourceProperty("serverName", address);
-        config.addDataSourceProperty("port", port);
         config.addDataSourceProperty("databaseName", databaseName);
-        config.setUsername(username);
-        config.setPassword(password);
     }
 }
