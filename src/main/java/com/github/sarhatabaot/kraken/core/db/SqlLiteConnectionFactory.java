@@ -8,7 +8,7 @@ import org.jetbrains.annotations.NotNull;
  * @author sarhatabaot
  */
 public class SqlLiteConnectionFactory<T extends JavaPlugin> extends HikariConnectionFactory<T>{
-    protected SqlLiteConnectionFactory(final String poolName) {
+    public SqlLiteConnectionFactory(final String poolName) {
         super(poolName);
     }
 
