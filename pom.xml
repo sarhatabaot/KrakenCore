@@ -6,7 +6,7 @@
 
     <groupId>com.github.sarhatabaot</groupId>
     <artifactId>kraken-core</artifactId>
-    <version>1.4.2</version>
+    <version>1.5.0</version>
 
     <packaging>jar</packaging>
     <properties>
@@ -22,6 +22,8 @@
         <maven.deploy.version>3.0.0-M2</maven.deploy.version>
         <maven.sources.version>3.2.0</maven.sources.version>
         <slf4j.version>2.0.0-alpha7</slf4j.version>
+        <hikaricp.version>5.0.1</hikaricp.version>
+        <jooq.version>3.17.2</jooq.version>
     </properties>
     <build>
         <plugins>
@@ -103,6 +105,17 @@
             <version>${slf4j.version}</version>
             <scope>compile</scope>
         </dependency>
-
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+            <version>${hikaricp.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jooq</groupId>
+            <artifactId>jooq</artifactId>
+            <version>${jooq.version}</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 </project>
