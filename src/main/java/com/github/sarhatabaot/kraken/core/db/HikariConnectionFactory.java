@@ -96,4 +96,7 @@ public abstract class HikariConnectionFactory<T extends JavaPlugin> implements C
         return connection;
     }
 
+    public HikariDataSource getDataSource() {
+        return dataSource;
+    }
 }
