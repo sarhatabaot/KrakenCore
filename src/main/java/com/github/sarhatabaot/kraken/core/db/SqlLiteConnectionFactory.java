@@ -4,6 +4,8 @@ import com.zaxxer.hikari.HikariConfig;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Map;
+
 /**
  * @author sarhatabaot
  */
@@ -21,5 +23,10 @@ public class SqlLiteConnectionFactory<T extends JavaPlugin> extends HikariConnec
     protected void configureDatabase(final @NotNull HikariConfig config, final String address, final int port, final String databaseName, final String username, final String password) {
         config.setDataSourceClassName("org.sqlite.SQLiteDataSource");
         config.addDataSourceProperty("databaseName", databaseName);
+    }
+
+    @Override
+    protected void overrideProperties(@NotNull final Map<String, String> properties) {
+        // sqlite doesn't have sockettimeout
     }
 }
