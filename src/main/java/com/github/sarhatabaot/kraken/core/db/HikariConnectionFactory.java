@@ -17,6 +17,7 @@ import java.util.concurrent.TimeUnit;
  * @author sarhatabaot
  */
 public abstract class HikariConnectionFactory<T extends JavaPlugin> implements ConnectionFactory<T> {
+    protected T plugin;
     private final String poolName;
     protected HikariDataSource dataSource;
     private final Logger logger = LoggerFactory.getLogger(HikariConnectionFactory.class);
@@ -39,6 +40,7 @@ public abstract class HikariConnectionFactory<T extends JavaPlugin> implements C
 
     @Override
     public void init(final T plugin, String address, int port, String databaseName, String username, String password) {
+        this.plugin = plugin;
         HikariConfig config = new HikariConfig();
         config.setPoolName(poolName);
 
