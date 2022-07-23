@@ -26,7 +26,9 @@ public class ConfigFile<T extends JavaPlugin> {
     protected File file;
     protected FileConfiguration config;
 
-    protected ConfigFile(final @NotNull T plugin, final String resourcePath, final String fileName, final String folder) {
+    private boolean copyDefaults;
+
+    public ConfigFile(final @NotNull T plugin, final String resourcePath, final String fileName, final String folder) {
         this.plugin = plugin;
         this.fileName = fileName;
         this.resourcePath = resourcePath;
@@ -79,6 +81,7 @@ public class ConfigFile<T extends JavaPlugin> {
                 if (resource != null) {
                     try (Reader defConfigStream = new InputStreamReader(resource, StandardCharsets.UTF_8)) {
                         YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
+                        defConfig.options().copyDefaults(copyDefaults);
                         config.setDefaults(defConfig);
                     }
                 }
@@ -94,5 +97,13 @@ public class ConfigFile<T extends JavaPlugin> {
             reloadConfig();
         }
         return this.config;
+    }
+
+    public boolean isCopyDefaults() {
+        return copyDefaults;
+    }
+
+    public void setCopyDefaults(final boolean copyDefaults) {
+        this.copyDefaults = copyDefaults;
     }
 }
