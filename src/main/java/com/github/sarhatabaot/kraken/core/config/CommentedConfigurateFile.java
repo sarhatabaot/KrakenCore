@@ -42,6 +42,10 @@ public abstract class CommentedConfigurateFile<T extends JavaPlugin, U extends A
 
     protected abstract R loadBuilder();
 
+    /**
+     * loaderBuilder.defaultOptions(opts -> opts.serializers(builder ->
+     *                 builder.registerExact(ConfigCache.class,  ConfigCacheSerializer.INSTANCE)));
+     */
     protected abstract void builderOptions();
 
     protected abstract Transformation getTransformation();
