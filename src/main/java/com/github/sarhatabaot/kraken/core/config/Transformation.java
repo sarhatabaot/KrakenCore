@@ -9,6 +9,7 @@ import org.spongepowered.configurate.transformation.ConfigurationTransformation;
 
 import static org.spongepowered.configurate.NodePath.path;
 
+//TODO we want this file to have a java 8 version for farmassist
 public abstract class Transformation {
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -44,9 +45,10 @@ public abstract class Transformation {
             transformation.apply(node);
             final int endVersion = transformation.version(node);
             if (startVersion != endVersion) { // we might not have made any changes
-                logger.info("Updated config schema from %d to %d".formatted(startVersion, endVersion));
+                logger.info(String.format("Updated config schema from %d to %d",startVersion, endVersion));
             }
         }
         return node;
     }
+    
 }
