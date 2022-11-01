@@ -22,7 +22,7 @@ public class FileUtil {
         throw new UnsupportedOperationException();
     }
 
-    public static @NotNull List<String> getFileNamesInJarMenusFolder(@NotNull JavaPlugin plugin, Predicate<ZipEntry> fileCondition) {
+    public static @NotNull List<String> getFileNamesInJar(@NotNull JavaPlugin plugin, Predicate<ZipEntry> fileCondition) {
         List<String> fileNames = new ArrayList<>();
         CodeSource src = plugin.getClass().getProtectionDomain().getCodeSource();
         if (src != null) {
