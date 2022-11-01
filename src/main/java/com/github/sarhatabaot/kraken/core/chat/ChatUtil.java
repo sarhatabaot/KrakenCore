@@ -1,6 +1,7 @@
 package com.github.sarhatabaot.kraken.core.chat;
 
 import me.clip.placeholderapi.PlaceholderAPI;
+import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.ChatColor;
@@ -8,6 +9,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Iterator;
 
 /**
  * @author sarhatabaot
@@ -48,5 +51,33 @@ public class ChatUtil {
             finalText = ChatUtil.color(finalText);
         }
         return finalText;
+    }
+
+
+    public static Component join(Iterator<Component> iterator, String separator) {
+        if (iterator == null) {
+            return null;
+        }
+
+        if (!iterator.hasNext()) {
+            return Component.text("");
+        }
+
+        Component first = iterator.next();
+        if (!iterator.hasNext()) {
+            return first;
+        }
+
+        while (iterator.hasNext()) {
+            if (separator != null) {
+                first = first.append(Component.text(separator));
+            }
+
+            Component component = iterator.next();
+            if (component != null) {
+                first = first.append(component);
+            }
+        }
+        return first;
     }
 }
