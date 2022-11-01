@@ -21,6 +21,9 @@
         <maven.compiler.version>3.10.1</maven.compiler.version>
         <maven.deploy.version>3.0.0-M2</maven.deploy.version>
         <maven.sources.version>3.2.0</maven.sources.version>
+        <papi.version>2.11.2</papi.version>
+        <adventure.version>4.11.0</adventure.version>
+        <adventure.bukkit.version>4.1.2</adventure.bukkit.version>
         <slf4j.version>2.0.3</slf4j.version>
         <hikaricp.version>5.0.1</hikaricp.version>
         <jooq.version>3.17.4</jooq.version>
@@ -115,6 +118,30 @@
             <groupId>org.jooq</groupId>
             <artifactId>jooq</artifactId>
             <version>${jooq.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.kyori</groupId>
+            <artifactId>adventure-api</artifactId>
+            <version>${adventure.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.kyori</groupId>
+            <artifactId>adventure-platform-bukkit</artifactId>
+            <version>${adventure.bukkit.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.kyori</groupId>
+            <artifactId>adventure-text-minimessage</artifactId>
+            <version>${adventure.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>me.clip</groupId>
+            <artifactId>placeholderapi</artifactId>
+            <version>${papi.version}</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
