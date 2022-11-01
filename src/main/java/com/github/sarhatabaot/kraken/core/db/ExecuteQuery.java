@@ -8,7 +8,6 @@ import org.jooq.conf.Settings;
 import org.jooq.impl.DSL;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 
 /**
  * @author sarhatabaot

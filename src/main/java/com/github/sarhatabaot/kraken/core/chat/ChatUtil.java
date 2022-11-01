@@ -16,6 +16,10 @@ import java.util.Iterator;
  * @author sarhatabaot
  */
 public class ChatUtil {
+    private ChatUtil() {
+        throw new UnsupportedOperationException();
+    }
+
     public static void sendMessage(final @NotNull CommandSender sender, final String @NotNull ... messages) {
         for(String message: messages) {
             sendMessage(sender,message);
