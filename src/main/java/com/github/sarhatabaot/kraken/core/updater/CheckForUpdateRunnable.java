@@ -12,6 +12,7 @@ import org.jetbrains.annotations.Nullable;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
@@ -50,7 +51,7 @@ public abstract class CheckForUpdateRunnable extends BukkitRunnable {
     public abstract String getVersionFromRemote(JsonReader reader);
 
     //API Endpoint
-    public abstract URL getApiEndpoint();
+    public abstract URL getApiEndpoint() throws MalformedURLException;
 
     @Nullable
     public abstract String getNewVersionUrl();

@@ -5,28 +5,50 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
  * @author sarhatabaot
  */
 public class GithubUpdateRunnable extends CheckForUpdateRunnable{
-    public GithubUpdateRunnable(final @NotNull JavaPlugin plugin) {
+    private final String user;
+    private final String repo;
+
+    public GithubUpdateRunnable(final @NotNull JavaPlugin plugin, final String user, final String repo) {
         super(plugin);
+        this.user = user;
+        this.repo = repo;
     }
 
     @Override
-    public String getVersionFromRemote(final JsonReader reader) {
-        return null;
+    public String getVersionFromRemote(final @NotNull JsonReader reader) {
+        String version = "0.0.0";
+        try {
+            reader.beginObject();
+            while (reader.hasNext()) {
+                String name = reader.nextName();
+                if(name.equalsIgnoreCase("tag_name")) {
+                    version = reader.nextString();
+                } else {
+                    reader.skipValue();
+                }
+            }
+            reader.endObject();
+        } catch (IOException e) {
+            return version;
+        }
+        return version;
     }
 
     @Override
-    public URL getApiEndpoint() {
-        return null;
+    public URL getApiEndpoint() throws MalformedURLException {
+        return new URL("https://api.github.com/repos/%s/%s/releases/latest".formatted(this.user,this.repo));
     }
 
     @Override
     public @Nullable String getNewVersionUrl() {
-        return null;
+        return "https://github.com/%s/%s/releases/tag/%s".formatted(this.user, this.repo, this.remoteVersion.toString());
     }
 }
