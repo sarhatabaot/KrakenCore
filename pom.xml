@@ -6,7 +6,7 @@
 
     <groupId>com.github.sarhatabaot</groupId>
     <artifactId>kraken-core</artifactId>
-    <version>1.5.6</version>
+    <version>1.6.0</version>
 
     <packaging>jar</packaging>
     <properties>
@@ -26,7 +26,7 @@
         <adventure.bukkit.version>4.1.2</adventure.bukkit.version>
         <slf4j.version>2.0.3</slf4j.version>
         <hikaricp.version>5.0.1</hikaricp.version>
-        <jooq.version>3.17.4</jooq.version>
+        <jooq.version>3.17.5</jooq.version>
         <maven.artifact.version>4.0.0-alpha-2</maven.artifact.version>
     </properties>
     <build>
