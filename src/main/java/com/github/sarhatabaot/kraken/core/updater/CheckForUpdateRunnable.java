@@ -34,12 +34,14 @@ public abstract class CheckForUpdateRunnable extends BukkitRunnable {
     public void run() {
         try {
             URLConnection urlConnection = getApiEndpoint().openConnection();
+            urlConnection.addRequestProperty("User-Agent", "MyUserAgent");
             try(BufferedReader in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()))) {
                 Gson gson = new Gson();
-                JsonReader reader = gson.newJsonReader(in);
-                this.remoteVersion = new DefaultArtifactVersion(getVersionFromRemote(reader));
-                if (this.localVersion.compareTo(remoteVersion) < 0) {
-                    logNewVersion();
+                try(JsonReader reader = gson.newJsonReader(in)) {
+                    this.remoteVersion = new DefaultArtifactVersion(getVersionFromRemote(reader));
+                    if (this.localVersion.compareTo(remoteVersion) < 0) {
+                        logNewVersion();
+                    }
                 }
             }
         } catch (IOException e) {

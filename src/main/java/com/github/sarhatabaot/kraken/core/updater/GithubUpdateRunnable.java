@@ -29,7 +29,7 @@ public class GithubUpdateRunnable extends CheckForUpdateRunnable{
             reader.beginObject();
             while (reader.hasNext()) {
                 String name = reader.nextName();
-                if(name.equalsIgnoreCase("tag_name")) {
+                if(name.equals("tag_name")) {
                     version = reader.nextString();
                 } else {
                     reader.skipValue();
