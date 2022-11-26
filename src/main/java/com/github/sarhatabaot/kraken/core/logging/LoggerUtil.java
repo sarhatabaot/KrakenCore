@@ -7,6 +7,9 @@ import org.slf4j.LoggerFactory;
  * @author sarhatabaot
  */
 public class LoggerUtil {
+    private LoggerUtil() {
+        throw new UnsupportedOperationException();
+    }
     private static Logger logger = LoggerFactory.getLogger(LoggerUtil.class);
 
     static {

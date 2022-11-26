@@ -24,10 +24,10 @@
         <papi.version>2.11.2</papi.version>
         <adventure.version>4.11.0</adventure.version>
         <adventure.bukkit.version>4.1.2</adventure.bukkit.version>
-        <slf4j.version>2.0.3</slf4j.version>
+        <slf4j.version>2.0.4</slf4j.version>
         <hikaricp.version>5.0.1</hikaricp.version>
         <jooq.version>3.17.5</jooq.version>
-        <maven.artifact.version>4.0.0-alpha-2</maven.artifact.version>
+        <maven.artifact.version>3.8.6</maven.artifact.version>
     </properties>
     <build>
         <plugins>
@@ -149,7 +149,6 @@
             <version>${papi.version}</version>
             <scope>provided</scope>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.apache.maven/maven-artifact -->
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-artifact</artifactId>
