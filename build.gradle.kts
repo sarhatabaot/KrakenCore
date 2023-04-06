@@ -1,12 +1,12 @@
 plugins {
-    id("java")
+    id("java-library")
     id("maven-publish")
     id("com.github.johnrengelman.shadow") version "8.1.0"
     
     jacoco
 }
 
-version = "1.7.2"
+version = "1.7.3"
 
 repositories {
     maven(
@@ -23,7 +23,6 @@ repositories {
     )
 }
 
-
 dependencies {
     compileOnly(libs.spigot.api)
     compileOnly(libs.placeholder.api)
@@ -39,8 +38,8 @@ dependencies {
     
     compileOnly(libs.slf4j)
     
-    implementation(libs.lapzupi.config)
-    implementation(libs.lapzupi.connection)
+    api(libs.lapzupi.config)
+    api(libs.lapzupi.connection)
     
     testImplementation(libs.mockito)
     testImplementation(platform(libs.junit.platform))
