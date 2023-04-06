@@ -1,6 +1,7 @@
 package com.github.sarhatabaot.kraken.core.db;
 
 import com.github.sarhatabaot.kraken.core.logging.LoggerUtil;
+import com.lapzupi.dev.connection.ConnectionFactory;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 import org.jooq.DSLContext;
@@ -14,15 +15,15 @@ import java.sql.SQLException;
  * @author sarhatabaot
  */
 public abstract class ExecuteUpdate<T extends JavaPlugin> {
-    private final ConnectionFactory<T> connectionFactory;
+    private final ConnectionFactory connectionFactory;
     private final Settings settings;
 
-    public ExecuteUpdate(final ConnectionFactory<T> connectionFactory, final Settings settings) {
+    public ExecuteUpdate(final ConnectionFactory connectionFactory, final Settings settings) {
         this.connectionFactory = connectionFactory;
         this.settings = settings;
     }
 
-    public ExecuteUpdate(final ConnectionFactory<T> connectionFactory) {
+    public ExecuteUpdate(final ConnectionFactory connectionFactory) {
         this.connectionFactory = connectionFactory;
         this.settings = null;
     }
@@ -37,9 +38,9 @@ public abstract class ExecuteUpdate<T extends JavaPlugin> {
     }
     private @NotNull DSLContext getContext(Connection connection) {
         if (settings ==null)
-            return DSL.using(connection, connectionFactory.getType().getDialect());
+            return DSL.using(connection, JooqUtil.getDialect(connectionFactory.getType()));
 
-        return DSL.using(connection, connectionFactory.getType().getDialect(), settings);
+        return DSL.using(connection, JooqUtil.getDialect(connectionFactory.getType()), settings);
     }
     protected abstract void onRunUpdate(DSLContext dslContext);
 }

@@ -1,7 +1,7 @@
 package com.github.sarhatabaot.kraken.core.db;
 
 import com.github.sarhatabaot.kraken.core.logging.LoggerUtil;
-import org.bukkit.plugin.java.JavaPlugin;
+import com.lapzupi.dev.connection.ConnectionFactory;
 import org.jetbrains.annotations.NotNull;
 import org.jooq.DSLContext;
 import org.jooq.conf.Settings;
@@ -12,16 +12,16 @@ import java.sql.Connection;
 /**
  * @author sarhatabaot
  */
-public abstract class ExecuteQuery<T, R, U extends JavaPlugin> {
-    private final ConnectionFactory<U> connectionFactory;
+public abstract class ExecuteQuery<T, R> {
+    private final ConnectionFactory connectionFactory;
     private final Settings settings;
 
-    public ExecuteQuery(final ConnectionFactory<U> connectionFactory, final Settings settings) {
+    public ExecuteQuery(final ConnectionFactory connectionFactory, final Settings settings) {
         this.connectionFactory = connectionFactory;
         this.settings = settings;
     }
 
-    public ExecuteQuery(final ConnectionFactory<U> connectionFactory) {
+    public ExecuteQuery(final ConnectionFactory connectionFactory) {
         this.connectionFactory = connectionFactory;
         this.settings = null;
     }
@@ -38,9 +38,9 @@ public abstract class ExecuteQuery<T, R, U extends JavaPlugin> {
 
     private @NotNull DSLContext getContext(Connection connection) {
         if (settings ==null)
-            return DSL.using(connection, connectionFactory.getType().getDialect());
+            return DSL.using(connection, JooqUtil.getDialect(connectionFactory.getType()));
 
-        return DSL.using(connection, connectionFactory.getType().getDialect(), settings);
+        return DSL.using(connection, JooqUtil.getDialect(connectionFactory.getType()), settings);
     }
 
     public abstract T onRunQuery(DSLContext dslContext) throws Exception;
