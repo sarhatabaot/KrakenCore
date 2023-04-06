@@ -2,7 +2,6 @@ package com.github.sarhatabaot.kraken.core.db;
 
 import com.github.sarhatabaot.kraken.core.logging.LoggerUtil;
 import com.lapzupi.dev.connection.ConnectionFactory;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 import org.jooq.DSLContext;
 import org.jooq.conf.Settings;
@@ -14,7 +13,7 @@ import java.sql.SQLException;
 /**
  * @author sarhatabaot
  */
-public abstract class ExecuteUpdate<T extends JavaPlugin> {
+public abstract class ExecuteUpdate {
     private final ConnectionFactory connectionFactory;
     private final Settings settings;
 
