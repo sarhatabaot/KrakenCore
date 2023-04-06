@@ -21,34 +21,34 @@ public class FileUtil {
     private FileUtil() {
         throw new UnsupportedOperationException();
     }
-
-    public static @NotNull List<String> getFileNamesInJar(@NotNull JavaPlugin plugin, Predicate<ZipEntry> fileCondition) {
+    
+    /**
+     * plugin.getClass().getProtectionDomain().getCodeSource()
+     */
+    public static @NotNull List<String> getFileNamesInJar(@NotNull CodeSource source, Predicate<ZipEntry> fileCondition) {
         List<String> fileNames = new ArrayList<>();
-        CodeSource src = plugin.getClass().getProtectionDomain().getCodeSource();
-        if (src != null) {
-            URL jar = src.getLocation();
-            try (ZipInputStream zip = new ZipInputStream(jar.openStream())) {
-                while (true) {
-                    ZipEntry entry = zip.getNextEntry();
-                    if (entry == null)
-                        break;
-                    if (fileCondition.test(entry)) {
-                        fileNames.add(entry.getName());
-                    }
+        URL jar = source.getLocation();
+        try (ZipInputStream zip = new ZipInputStream(jar.openStream())) {
+            while (true) {
+                ZipEntry entry = zip.getNextEntry();
+                if (entry == null)
+                    break;
+                if (fileCondition.test(entry)) {
+                    fileNames.add(entry.getName());
                 }
-            } catch (IOException e) {
-                LoggerUtil.logSevereException(e);
             }
+        } catch (IOException e) {
+            LoggerUtil.logSevereException(e);
         }
         return fileNames;
     }
-
+    
     public static void saveFileFromJar(JavaPlugin plugin, final String resourcePath, final String fileName, final File folder) {
         File file = new File(folder, fileName);
-
+        
         if (!file.exists()) {
             plugin.saveResource(resourcePath + fileName, false);
         }
-
+        
     }
 }
