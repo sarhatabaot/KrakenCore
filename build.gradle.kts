@@ -28,8 +28,7 @@ dependencies {
     compileOnly(libs.spigot.api)
     compileOnly(libs.placeholder.api)
     
-//    compileOnly(libs.hikaricp)
-//    compileOnly(libs.flyway)
+    
     compileOnly(libs.annotations)
     compileOnly(libs.adventure.api)
     compileOnly(libs.adventure.minimessage)
