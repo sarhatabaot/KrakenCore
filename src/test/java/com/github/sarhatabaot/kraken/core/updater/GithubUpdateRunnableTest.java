@@ -27,37 +27,37 @@ class GithubUpdateRunnableTest {
     static void setUp() {
         Logger logger = Logger.getLogger(SpigotUpdateRunnableTest.class.getName());
         outOfDateRunnable = new GithubUpdateRunnable(OUT_OF_DATE, logger, USER, REPO);
-    upToDateRunnable = new GithubUpdateRunnable(UP_TO_DATE, logger,USER, REPO);
+        upToDateRunnable = new GithubUpdateRunnable(UP_TO_DATE, logger, USER, REPO);
     }
     
     @Test
     void run() {
         outOfDateRunnable.run();
         upToDateRunnable.run();
-    
+        
         assertTrue(outOfDateRunnable.localVersion.compareTo(outOfDateRunnable.remoteVersion) < 0);
         assertNotEquals(0, outOfDateRunnable.localVersion.compareTo(outOfDateRunnable.remoteVersion));
-    
+        
         assertEquals(0, upToDateRunnable.localVersion.compareTo(upToDateRunnable.remoteVersion));
         assertFalse(upToDateRunnable.localVersion.compareTo(upToDateRunnable.remoteVersion) < 0);
     }
     
     @Test
     void getVersionFromRemote() {
-        try(JsonReader reader = new JsonReader(new FileReader(getClass().getClassLoader().getResource("updater/github-enchantgui-correct.json").getFile()))) {
+        try (JsonReader reader = new JsonReader(new FileReader(getClass().getClassLoader().getResource("updater/github-enchantgui-correct.json").getFile()))) {
             assertEquals(UP_TO_DATE, outOfDateRunnable.getVersionFromRemote(reader));
         } catch (IOException e) {
             e.printStackTrace();
         }
         
-        try(JsonReader reader = new JsonReader(new FileReader(getClass().getClassLoader().getResource("updater/github-enchantgui-correct.json").getFile()))) {
+        try (JsonReader reader = new JsonReader(new FileReader(getClass().getClassLoader().getResource("updater/github-enchantgui-correct.json").getFile()))) {
             assertNotEquals(OUT_OF_DATE, outOfDateRunnable.getVersionFromRemote(reader));
         } catch (IOException e) {
             e.printStackTrace();
         }
         
         
-        try(JsonReader reader = new JsonReader(new FileReader(getClass().getClassLoader().getResource("updater/github-enchantgui-malformed.json").getFile()))) {
+        try (JsonReader reader = new JsonReader(new FileReader(getClass().getClassLoader().getResource("updater/github-enchantgui-malformed.json").getFile()))) {
             assertEquals("0.0.0", outOfDateRunnable.getVersionFromRemote(reader));
         } catch (IOException e) {
             e.printStackTrace();
@@ -80,8 +80,8 @@ class GithubUpdateRunnableTest {
         
         assertEquals("https://github.com/%s/%s/releases/tag/%s".formatted(USER, REPO, UP_TO_DATE), outOfDateRunnable.getNewVersionUrl());
         assertNotEquals("https://github.com/%s/%s/releases/tag/%s".formatted(USER, REPO, OUT_OF_DATE), outOfDateRunnable.getNewVersionUrl());
-        assertNotEquals("https://incorrect.url.org/%s/%s".formatted(USER,REPO), outOfDateRunnable.getNewVersionUrl());
+        assertNotEquals("https://incorrect.url.org/%s/%s".formatted(USER, REPO), outOfDateRunnable.getNewVersionUrl());
         
-        assertEquals("https://github.com/%s/%s/releases/tag/%s".formatted(USER, REPO, UP_TO_DATE),upToDateRunnable.getNewVersionUrl());
+        assertEquals("https://github.com/%s/%s/releases/tag/%s".formatted(USER, REPO, UP_TO_DATE), upToDateRunnable.getNewVersionUrl());
     }
 }
