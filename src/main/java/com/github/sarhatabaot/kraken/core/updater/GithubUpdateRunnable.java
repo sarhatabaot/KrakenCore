@@ -1,13 +1,13 @@
 package com.github.sarhatabaot.kraken.core.updater;
 
 import com.google.gson.stream.JsonReader;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.logging.Logger;
 
 /**
  * @author sarhatabaot
@@ -15,13 +15,13 @@ import java.net.URL;
 public class GithubUpdateRunnable extends CheckForUpdateRunnable{
     private final String user;
     private final String repo;
-
-    public GithubUpdateRunnable(final @NotNull JavaPlugin plugin, final String user, final String repo) {
-        super(plugin);
+    
+    public GithubUpdateRunnable(String pluginVersion, Logger logger, String user, String repo) {
+        super(pluginVersion, logger);
         this.user = user;
         this.repo = repo;
     }
-
+    
     @Override
     public String getVersionFromRemote(final @NotNull JsonReader reader) {
         String version = "0.0.0";

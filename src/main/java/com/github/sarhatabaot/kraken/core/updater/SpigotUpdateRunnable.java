@@ -8,18 +8,19 @@ import org.jetbrains.annotations.Nullable;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.logging.Logger;
 
 /**
  * @author sarhatabaot
  */
 public class SpigotUpdateRunnable extends CheckForUpdateRunnable {
     private final String resourceId;
-
-    public SpigotUpdateRunnable(final @NotNull JavaPlugin plugin, final String resourceId) {
-        super(plugin);
+    
+    public SpigotUpdateRunnable(String pluginVersion, Logger logger, String resourceId) {
+        super(pluginVersion, logger);
         this.resourceId = resourceId;
     }
-
+    
     @Override
     public String getVersionFromRemote(final @NotNull JsonReader reader) {
         String version = "0.0.0";

@@ -4,9 +4,7 @@ import com.github.sarhatabaot.kraken.core.logging.LoggerUtil;
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.BufferedReader;
@@ -15,19 +13,20 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.logging.Logger;
 
 /**
  * @author sarhatabaot
  */
 //github, spigot variants
 public abstract class CheckForUpdateRunnable extends BukkitRunnable {
-    private final JavaPlugin plugin;
+    private final Logger logger;
     protected final DefaultArtifactVersion localVersion;
     protected DefaultArtifactVersion remoteVersion;
 
-    protected CheckForUpdateRunnable(final @NotNull JavaPlugin plugin) {
-        this.plugin = plugin;
-        this.localVersion = new DefaultArtifactVersion(plugin.getDescription().getVersion());
+    protected CheckForUpdateRunnable(final String pluginVersion, final Logger logger) {
+        this.logger = logger;
+        this.localVersion = new DefaultArtifactVersion(pluginVersion);
     }
 
     @Override
@@ -59,7 +58,7 @@ public abstract class CheckForUpdateRunnable extends BukkitRunnable {
     public abstract String getNewVersionUrl();
 
     public void logNewVersion() {
-        plugin.getLogger().info(() -> "New version available: %s, Current version: %s".formatted(remoteVersion.toString(), localVersion.toString()));
-        plugin.getLogger().info(() -> "Get it at: %s".formatted(getNewVersionUrl()));
+        logger.info(() -> "New version available: %s, Current version: %s".formatted(remoteVersion.toString(), localVersion.toString()));
+        logger.info(() -> "Get it at: %s".formatted(getNewVersionUrl()));
     }
 }
