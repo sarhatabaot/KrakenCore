@@ -18,5 +18,6 @@ gradle-app.setting
 .classpath
 .idea
 *.iml
+build
 
 target
