@@ -81,3 +81,15 @@ java {
         languageVersion.set(JavaLanguageVersion.of(17))
     }
 }
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = groupId
+            artifactId = artifactId
+            version = version
+            
+            from(components["java"])
+        }
+    }
+}
