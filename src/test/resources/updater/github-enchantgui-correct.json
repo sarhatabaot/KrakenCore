@@ -1,0 +1,41 @@
+{
+  "url": "https://api.github.com/repos/sarhatabaot/EnchantGUI/releases/97834094",
+  "assets_url": "https://api.github.com/repos/sarhatabaot/EnchantGUI/releases/97834094/assets",
+  "upload_url": "https://uploads.github.com/repos/sarhatabaot/EnchantGUI/releases/97834094/assets{?name,label}",
+  "html_url": "https://github.com/sarhatabaot/EnchantGUI/releases/tag/v1.7.4",
+  "id": 97834094,
+  "author": {
+    "login": "sarhatabaot",
+    "id": 4803946,
+    "node_id": "MDQ6VXNlcjQ4MDM5NDY=",
+    "avatar_url": "https://avatars.githubusercontent.com/u/4803946?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/sarhatabaot",
+    "html_url": "https://github.com/sarhatabaot",
+    "followers_url": "https://api.github.com/users/sarhatabaot/followers",
+    "following_url": "https://api.github.com/users/sarhatabaot/following{/other_user}",
+    "gists_url": "https://api.github.com/users/sarhatabaot/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/sarhatabaot/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/sarhatabaot/subscriptions",
+    "organizations_url": "https://api.github.com/users/sarhatabaot/orgs",
+    "repos_url": "https://api.github.com/users/sarhatabaot/repos",
+    "events_url": "https://api.github.com/users/sarhatabaot/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/sarhatabaot/received_events",
+    "type": "User",
+    "site_admin": false
+  },
+  "node_id": "RE_kwDOCdtQbc4F1NRu",
+  "tag_name": "v1.7.4",
+  "target_commitish": "master",
+  "name": "v1.7.4",
+  "draft": false,
+  "prerelease": false,
+  "created_at": "2023-04-03T11:14:03Z",
+  "published_at": "2023-04-03T11:14:47Z",
+  "assets": [
+  
+  ],
+  "tarball_url": "https://api.github.com/repos/sarhatabaot/EnchantGUI/tarball/v1.7.4",
+  "zipball_url": "https://api.github.com/repos/sarhatabaot/EnchantGUI/zipball/v1.7.4",
+  "body": "**Full Changelog**: https://github.com/sarhatabaot/EnchantGUI/compare/v1.7.3...v1.7.4"
+}
