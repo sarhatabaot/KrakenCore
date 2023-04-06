@@ -47,6 +47,9 @@ dependencies {
     testImplementation(platform(libs.junit.platform))
     testImplementation(libs.junit.jupiter)
     testImplementation(libs.jooq)
+    testImplementation(libs.slf4j)
+    testImplementation(libs.spigot.api)
+    testImplementation(libs.artifact.version)
 }
 
 tasks {
