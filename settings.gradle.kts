@@ -32,6 +32,7 @@ dependencyResolutionManagement {
             
             library("lapzupi-connection", "com.github.Lapzupi:LapzupiConnection:1.0.2")
             library("lapzupi-config", "com.github.Lapzupi:LapzupiConfig:1.1.0")
+            library("lapzupi-files", "com.github.Lapzupi:LapzupiFiles:1c7a837b53")
             
             library("slf4j", "org.slf4j:slf4j-api:2.0.5")
         }

@@ -6,9 +6,12 @@ plugins {
     jacoco
 }
 
-version = "1.7.3"
+version = "1.7.4"
 
 repositories {
+    maven(
+        url = "https://hub.spigotmc.org/nexus/content/repositories/snapshots/"
+    )
     maven(
         url = "https://repo.aikar.co/content/groups/aikar/"
     )
@@ -27,7 +30,6 @@ dependencies {
     compileOnly(libs.spigot.api)
     compileOnly(libs.placeholder.api)
     
-    
     compileOnly(libs.annotations)
     compileOnly(libs.adventure.api)
     compileOnly(libs.adventure.minimessage)
@@ -40,6 +42,7 @@ dependencies {
     
     api(libs.lapzupi.config)
     api(libs.lapzupi.connection)
+    api(libs.lapzupi.files)
     
     testImplementation(libs.mockito)
     testImplementation(platform(libs.junit.platform))
@@ -57,7 +60,7 @@ tasks {
     
     shadowJar {
         minimize()
-        
+
         relocate("com.lapzupi.dev.connection", "com.github.sarhatabaot.kraken.core.db")
         relocate("com.lapzupi.dev.config", "com.github.sarhatabaot.kraken.core.config")
     }
