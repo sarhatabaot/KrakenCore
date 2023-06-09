@@ -16,29 +16,14 @@ import java.net.URL
  */
 class GithubUpdateRunnableTest {
 
-    private val OUT_OF_DATE = "v1.7.0"
-    private val UP_TO_DATE = "v1.7.4"
-    private val USER = "sarhatabaot"
-    private val REPO = "EnchantGUI" //TODO Change to plugin that doesn't change.
-
-    private var outOfDateRunnable: GithubUpdateRunnable? = null
-    private var upToDateRunnable: GithubUpdateRunnable? = null
-
-    @BeforeAll
-    fun setUp() {
-        val logger = LoggerFactory.getLogger(SpigotUpdateRunnableTest::class.java.name)
-        outOfDateRunnable = GithubUpdateRunnable(OUT_OF_DATE, logger, USER, REPO)
-        upToDateRunnable = GithubUpdateRunnable(UP_TO_DATE, logger, USER, REPO)
-    }
-
     @Test
     fun run() {
-        outOfDateRunnable!!.run()
-        upToDateRunnable!!.run()
-        assertTrue(outOfDateRunnable!!.localVersion < outOfDateRunnable!!.remoteVersion)
-        assertNotEquals(0, outOfDateRunnable!!.localVersion.compareTo(outOfDateRunnable!!.remoteVersion))
-        assertEquals(0, upToDateRunnable!!.localVersion.compareTo(upToDateRunnable!!.remoteVersion))
-        assertFalse(upToDateRunnable!!.localVersion < upToDateRunnable!!.remoteVersion)
+        outOfDateRunnable.run()
+        upToDateRunnable.run()
+        assertTrue(outOfDateRunnable.localVersion < outOfDateRunnable.remoteVersion)
+        assertNotEquals(0, outOfDateRunnable.localVersion.compareTo(outOfDateRunnable.remoteVersion))
+        assertEquals(0, upToDateRunnable.localVersion.compareTo(upToDateRunnable.remoteVersion))
+        assertFalse(upToDateRunnable.localVersion < upToDateRunnable.remoteVersion)
     }
 
     @Test
@@ -47,7 +32,7 @@ class GithubUpdateRunnableTest {
             JsonReader(FileReader(javaClass.classLoader.getResource("updater/github-enchantgui-correct.json").file)).use { reader ->
                 assertEquals(
                     UP_TO_DATE,
-                    outOfDateRunnable!!.getVersionFromRemote(reader)
+                    outOfDateRunnable.getVersionFromRemote(reader)
                 )
             }
         } catch (e: IOException) {
@@ -57,7 +42,7 @@ class GithubUpdateRunnableTest {
             JsonReader(FileReader(javaClass.classLoader.getResource("updater/github-enchantgui-correct.json").file)).use { reader ->
                 assertNotEquals(
                     OUT_OF_DATE,
-                    outOfDateRunnable!!.getVersionFromRemote(reader)
+                    outOfDateRunnable.getVersionFromRemote(reader)
                 )
             }
         } catch (e: IOException) {
@@ -67,7 +52,7 @@ class GithubUpdateRunnableTest {
             JsonReader(FileReader(javaClass.classLoader.getResource("updater/github-enchantgui-malformed.json").file)).use { reader ->
                 assertEquals(
                     "0.0.0",
-                    outOfDateRunnable!!.getVersionFromRemote(reader)
+                    outOfDateRunnable.getVersionFromRemote(reader)
                 )
             }
         } catch (e: IOException) {
@@ -80,7 +65,7 @@ class GithubUpdateRunnableTest {
         try {
             assertEquals(
                 URL("https://api.github.com/repos/%s/%s/releases/latest".format(USER, REPO)),
-                outOfDateRunnable!!.getApiEndpoint()
+                outOfDateRunnable.getApiEndpoint()
             )
         } catch (e: MalformedURLException) {
             throw RuntimeException(e)
@@ -89,20 +74,46 @@ class GithubUpdateRunnableTest {
 
     @Test
     fun getNewVersionUrl() {
-        outOfDateRunnable!!.run()
-        upToDateRunnable!!.run()
+        outOfDateRunnable.run()
+        upToDateRunnable.run()
         assertEquals(
             "https://github.com/%s/%s/releases/tag/%s".format(USER, REPO, UP_TO_DATE),
-            outOfDateRunnable!!.getNewVersionUrl()
+            outOfDateRunnable.getNewVersionUrl()
         )
         assertNotEquals(
             "https://github.com/%s/%s/releases/tag/%s".format(USER, REPO, OUT_OF_DATE),
-            outOfDateRunnable!!.getNewVersionUrl()
+            outOfDateRunnable.getNewVersionUrl()
         )
-        assertNotEquals("https://incorrect.url.org/%s/%s".format(USER, REPO), outOfDateRunnable!!.getNewVersionUrl())
+        assertNotEquals("https://incorrect.url.org/%s/%s".format(USER, REPO), outOfDateRunnable.getNewVersionUrl())
         assertEquals(
             "https://github.com/%s/%s/releases/tag/%s".format(USER, REPO, UP_TO_DATE),
-            upToDateRunnable!!.getNewVersionUrl()
+            upToDateRunnable.getNewVersionUrl()
         )
+    }
+
+    companion object {
+        private const val OUT_OF_DATE = "v1.7.0"
+        private const val UP_TO_DATE = "v1.7.4"
+        private const val USER = "sarhatabaot"
+        private const val REPO = "EnchantGUI" //TODO Change to plugin that doesn't change.
+        private lateinit var outOfDateRunnable : GithubUpdateRunnable
+        private lateinit var upToDateRunnable: GithubUpdateRunnable
+        @JvmStatic
+        @BeforeAll
+        fun setUp(){
+            val logger = LoggerFactory.getLogger(SpigotUpdateRunnableTest::class.java.name)
+            outOfDateRunnable = GithubUpdateRunnable(
+                OUT_OF_DATE,
+                logger,
+                USER,
+                REPO
+            )
+            upToDateRunnable = GithubUpdateRunnable(
+                UP_TO_DATE,
+                logger,
+                USER,
+                REPO
+            )
+        }
     }
 }
