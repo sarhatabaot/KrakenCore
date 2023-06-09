@@ -1,11 +1,13 @@
 package com.github.sarhatabaot.kraken.core.db;
 
-import com.github.sarhatabaot.kraken.core.logging.LoggerUtil;
+import com.github.sarhatabaot.kraken.core.extensions.LoggerExtensionsKt;
 import com.lapzupi.dev.connection.ConnectionFactory;
 import org.jetbrains.annotations.NotNull;
 import org.jooq.DSLContext;
 import org.jooq.conf.Settings;
 import org.jooq.impl.DSL;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 
@@ -13,6 +15,7 @@ import java.sql.Connection;
  * @author sarhatabaot
  */
 public abstract class ExecuteQuery<T, R> {
+    private final Logger logger = LoggerFactory.getLogger(ExecuteQuery.class);
     private final ConnectionFactory connectionFactory;
     private final Settings settings;
 
@@ -31,7 +34,7 @@ public abstract class ExecuteQuery<T, R> {
             DSLContext dslContext = getContext(connection);
             return onRunQuery(dslContext);
         } catch (Exception e) {
-            LoggerUtil.logSevereException(e);
+            LoggerExtensionsKt.logSevereException(logger, e);
         }
         return empty();
     }

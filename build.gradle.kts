@@ -2,11 +2,12 @@ plugins {
     id("java-library")
     id("maven-publish")
     id("com.github.johnrengelman.shadow") version "8.1.0"
-    
+    kotlin("jvm") version "1.8.20"
+
     jacoco
 }
 
-version = "1.7.4"
+version = "1.8.0"
 
 repositories {
     maven(
@@ -76,6 +77,10 @@ tasks.test {
 tasks.jacocoTestReport {
     dependsOn(tasks.test) // tests are required to run before generating the report
 }
+
+//tasks.withType<KotlinCompile> {
+//    kotlinOptions.jvmTarget = "17"
+//}
 
 java {
     toolchain {

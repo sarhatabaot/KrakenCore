@@ -1,11 +1,12 @@
 package com.github.sarhatabaot.kraken.core.updater;
 
-import com.github.sarhatabaot.kraken.core.logging.LoggerUtil;
+import com.github.sarhatabaot.kraken.core.extensions.LoggerExtensionsKt;
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.jetbrains.annotations.Nullable;
+import org.slf4j.Logger;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,7 +14,7 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.logging.Logger;
+
 
 /**
  * @author sarhatabaot
@@ -44,7 +45,7 @@ public abstract class CheckForUpdateRunnable extends BukkitRunnable {
                 }
             }
         } catch (IOException e) {
-            LoggerUtil.logWarningException(e);
+            LoggerExtensionsKt.logWarningException(logger, e);
         }
     }
 
@@ -58,7 +59,7 @@ public abstract class CheckForUpdateRunnable extends BukkitRunnable {
     public abstract String getNewVersionUrl();
 
     public void logNewVersion() {
-        logger.info(() -> "New version available: %s, Current version: %s".formatted(remoteVersion.toString(), localVersion.toString()));
-        logger.info(() -> "Get it at: %s".formatted(getNewVersionUrl()));
+        LoggerExtensionsKt.info(logger, () -> "New version available: %s, Current version: %s".formatted(remoteVersion.toString(), localVersion.toString()));
+        LoggerExtensionsKt.info(logger, () -> "Get it at: %s".formatted(getNewVersionUrl()));
     }
 }

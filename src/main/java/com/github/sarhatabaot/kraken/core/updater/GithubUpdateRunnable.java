@@ -3,11 +3,12 @@ package com.github.sarhatabaot.kraken.core.updater;
 import com.google.gson.stream.JsonReader;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.slf4j.Logger;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.logging.Logger;
+
 
 /**
  * @author sarhatabaot
