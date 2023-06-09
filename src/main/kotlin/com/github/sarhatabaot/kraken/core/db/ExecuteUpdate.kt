@@ -14,20 +14,10 @@ import java.sql.SQLException
  *
  * @author sarhatabaot
  */
-abstract class ExecuteUpdate {
+abstract class ExecuteUpdate(connectionFactory: ConnectionFactory?, settings: Settings?) {
     private val logger = LoggerFactory.getLogger(ExecuteUpdate::class.java)
     private var connectionFactory: ConnectionFactory? = null
     private var settings: Settings? = null
-
-    open fun ExecuteUpdate(connectionFactory: ConnectionFactory?, settings: Settings?) {
-        this.connectionFactory = connectionFactory
-        this.settings = settings
-    }
-
-    open fun ExecuteUpdate(connectionFactory: ConnectionFactory?) {
-        this.connectionFactory = connectionFactory
-        settings = null
-    }
 
     open fun executeUpdate() {
         try {

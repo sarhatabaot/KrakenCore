@@ -13,20 +13,10 @@ import java.sql.Connection
  *
  * @author sarhatabaot
  */
-abstract class ExecuteQuery<T, R> {
+abstract class ExecuteQuery<T, R>(connectionFactory: ConnectionFactory?, settings: Settings?) {
     private val logger = LoggerFactory.getLogger(ExecuteQuery::class.java)
     private var connectionFactory: ConnectionFactory? = null
     private var settings: Settings? = null
-
-    open fun ExecuteQuery(connectionFactory: ConnectionFactory?, settings: Settings?) {
-        this.connectionFactory = connectionFactory
-        this.settings = settings
-    }
-
-    open fun ExecuteQuery(connectionFactory: ConnectionFactory?) {
-        this.connectionFactory = connectionFactory
-        settings = null
-    }
 
     open fun prepareAndRunQuery(): T {
         try {
