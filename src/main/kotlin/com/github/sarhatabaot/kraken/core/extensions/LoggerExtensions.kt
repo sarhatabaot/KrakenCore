@@ -20,7 +20,7 @@ fun Logger.logWarningException(exception: Exception) = this.warn(exception.messa
 
 fun Logger.info(supplier: Supplier<String>) = this.info(supplier.get())
 
-fun Logger.debug(message: String, prefix: String = "DEBUG", isDebug : Boolean = false) {
+fun Logger.infoDebug(message: String, prefix: String = "DEBUG", isDebug : Boolean = false) {
     if(isDebug)
         return this.info("$prefix $message")
 }
