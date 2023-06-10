@@ -1,6 +1,8 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
+    java
+    
     id("maven-publish")
     id("com.github.johnrengelman.shadow") version "8.1.0"
     kotlin("jvm") version "1.8.20"
@@ -42,9 +44,9 @@ dependencies {
     
     compileOnly(libs.slf4j)
     
-    implementation(libs.lapzupi.config)
-    implementation(libs.lapzupi.connection)
-    implementation(libs.lapzupi.files)
+    api(libs.lapzupi.config)
+    api(libs.lapzupi.connection)
+    api(libs.lapzupi.files)
     
     testImplementation(libs.mockito)
     testImplementation(platform(libs.junit.platform))
@@ -84,6 +86,8 @@ tasks.withType<KotlinCompile> {
 }
 
 java {
+    withSourcesJar()
+
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(17))
     }
@@ -91,12 +95,12 @@ java {
 
 publishing {
     publications {
-        create<MavenPublication>("maven") {
+        create<MavenPublication>("KrakenCore") {
             groupId = groupId
             artifactId = artifactId
             version = version
-            
-            from(components["java"])
+
+            from(components.getByName("java"))
         }
     }
 }
