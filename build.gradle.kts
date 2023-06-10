@@ -4,14 +4,13 @@ plugins {
     java
     
     id("maven-publish")
-    id("com.github.johnrengelman.shadow") version "8.1.0"
     kotlin("jvm") version "1.8.20"
 
     jacoco
 }
 
 group = "com.github.sarhatabaot"
-version = "1.8.3"
+version = "1.8.4-SNAPSHOT"
 
 repositories {
     maven(
@@ -58,18 +57,6 @@ dependencies {
     testImplementation(libs.artifact.version)
 }
 
-tasks {
-    build {
-        dependsOn(shadowJar)
-    }
-    
-    shadowJar {
-        minimize()
-
-        relocate("com.lapzupi.dev.connection", "com.github.sarhatabaot.kraken.core.db")
-        relocate("com.lapzupi.dev.config", "com.github.sarhatabaot.kraken.core.config")
-    }
-}
 jacoco {
     toolVersion = "0.8.8"
 }
