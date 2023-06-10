@@ -10,6 +10,7 @@ plugins {
     jacoco
 }
 
+group = "com.github.sarhatabaot"
 version = "1.8.3"
 
 repositories {
