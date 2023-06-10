@@ -19,3 +19,8 @@ fun Logger.logSevereException(exception: Exception) = this.error(exception.messa
 fun Logger.logWarningException(exception: Exception) = this.warn(exception.message, exception)
 
 fun Logger.info(supplier: Supplier<String>) = this.info(supplier.get())
+
+fun Logger.debug(message: String, prefix: String = "DEBUG", isDebug : Boolean = false) {
+    if(isDebug)
+        return this.info("$prefix $message")
+}
