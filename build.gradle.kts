@@ -1,7 +1,6 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("java-library")
     id("maven-publish")
     id("com.github.johnrengelman.shadow") version "8.1.0"
     kotlin("jvm") version "1.8.20"
@@ -9,7 +8,7 @@ plugins {
     jacoco
 }
 
-version = "1.8.0"
+version = "1.8.2"
 
 repositories {
     maven(
