@@ -29,7 +29,7 @@ class SpigotUpdateRunnable(pluginVersion: String, logger: Logger, private var re
         return version
     }
 
-    override fun getApiEndpoint(): URL = URL("https://api.spiget.org/v2/resources/%s/versions/latest".format(this.resourceId));
+    override fun getApiEndpoint(): URL = URL("https://api.spiget.org/v2/resources/%s/versions/latest".format(this.resourceId))
 
-    override fun getNewVersionUrl(): String = "https://api.spiget.org/v2/resources/%s/versions/latest/download".format(this.resourceId);
+    override fun getNewVersionUrl(): String = "https://api.spiget.org/v2/resources/%s/versions/latest/download".format(this.resourceId)
 }

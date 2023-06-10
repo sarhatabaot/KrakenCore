@@ -38,7 +38,7 @@ fun String.papi(player: Player): String {
     if (PlaceholderAPI.containsPlaceholders(this)) {
         return PlaceholderAPI.setPlaceholders(player, this)
     }
-    return this;
+    return this
 }
 /**
  * Returns a formatted string, handles PlaceholderAPI placeholders,
@@ -49,19 +49,19 @@ fun String.format(player: Player): String = this.papi(player).miniMessage().colo
 /**
  * Joins a list of components with a defined separator.
  */
-fun Component.join(iterator: Iterator<Component>, separator: String): Component {
-    if (!iterator.hasNext()) {
+fun Iterator<Component>.join(separator: String): Component {
+    if (!this.hasNext()) {
         return Component.text("")
     }
 
-    var first: Component = iterator.next()
-    if (!iterator.hasNext()) {
+    var first: Component = this.next()
+    if (!this.hasNext()) {
         return first
     }
 
-    while (iterator.hasNext()) {
+    while (this.hasNext()) {
         first = first.append(Component.text(separator))
-        val component: Component = iterator.next()
+        val component: Component = this.next()
         first = first.append(component)
     }
     return first

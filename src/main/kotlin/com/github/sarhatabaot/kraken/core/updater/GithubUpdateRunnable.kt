@@ -32,6 +32,6 @@ class GithubUpdateRunnable(pluginVersion: String, logger: Logger,private var use
     override fun getApiEndpoint(): URL = URL("https://api.github.com/repos/%s/%s/releases/latest".format(this.user, this.repo))
 
 
-    override fun getNewVersionUrl(): String = "https://github.com/%s/%s/releases/tag/%s".format(this.user, this.repo, this.remoteVersion.toString());
+    override fun getNewVersionUrl(): String = "https://github.com/%s/%s/releases/tag/%s".format(this.user, this.repo, this.remoteVersion.toString())
 
 }
