@@ -42,9 +42,9 @@ dependencies {
     
     compileOnly(libs.slf4j)
     
-    api(libs.lapzupi.config)
-    api(libs.lapzupi.connection)
-    api(libs.lapzupi.files)
+    implementation(libs.lapzupi.config)
+    implementation(libs.lapzupi.connection)
+    implementation(libs.lapzupi.files)
     
     testImplementation(libs.mockito)
     testImplementation(platform(libs.junit.platform))
