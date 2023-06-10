@@ -13,14 +13,15 @@ import java.sql.Connection
  *
  * @author sarhatabaot
  */
-abstract class ExecuteQuery<T, R>(connectionFactory: ConnectionFactory?, settings: Settings?) {
+abstract class ExecuteQuery<T, R>(
+    private var connectionFactory: ConnectionFactory,
+    private var settings: Settings
+) {
     private val logger = LoggerFactory.getLogger(ExecuteQuery::class.java)
-    private var connectionFactory: ConnectionFactory? = null
-    private var settings: Settings? = null
 
     open fun prepareAndRunQuery(): T {
         try {
-            connectionFactory!!.connection.use { connection ->
+            connectionFactory.connection.use { connection ->
                 val dslContext = getContext(connection)
                 return onRunQuery(dslContext)
             }
@@ -31,9 +32,9 @@ abstract class ExecuteQuery<T, R>(connectionFactory: ConnectionFactory?, setting
     }
 
     private fun getContext(connection: Connection): DSLContext {
-        return if (settings == null) DSL.using(connection, getDialect(connectionFactory!!.type)) else DSL.using(
+        return DSL.using(
             connection,
-            getDialect(connectionFactory!!.type),
+            getDialect(connectionFactory.type),
             settings
         )
     }
